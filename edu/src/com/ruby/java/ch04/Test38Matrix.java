@@ -36,13 +36,13 @@ public class Test38Matrix {
 			}
 		}
 		
-		System.out.println("B행렬");
-		for(int i = 0; i < B.length; i++) {
-			for(int j = 0; j < B[i].length; j++) {
-				System.out.print(B[i][j] + "\t");
-			}
-			System.out.println();
-		}
+//		System.out.println("B행렬");
+//		for(int i = 0; i < B.length; i++) {
+//			for(int j = 0; j < B[i].length; j++) {
+//				System.out.print(B[i][j] + "\t");
+//			}
+//			System.out.println();
+//		}
 		
 		// D배열 난수 입력
 		for(int i = 0; i < D.length; i++) {
@@ -52,25 +52,25 @@ public class Test38Matrix {
 		}
 		
 		// C = A * B 행렬 곱하기 (a11*b11 + a12*b21 + a13*b31 = c11, A의 열의 수 = B의 행의 수)
-		int sum = 0;
-		for(int i = 0; i < C.length; i++) {
-			for(int j = 0; j < C[0].length; j++) {
-				for(int k = 0; k < C[0].length; k++) {
-					sum += A[i][k] * B[k][j];
-				}
-				C[i][j] = sum;
-				sum = 0;
-			}
-		}
-		
-		System.out.println("C행렬");
-		for(int i = 0; i < C.length; i++) {
-			for(int j = 0; j < A[i].length; j++) {
-				System.out.print(A[i][j] + "\t");
-			}
-			System.out.println();
-		}
-		
+//		int sum = 0;
+//		for(int i = 0; i < C.length; i++) {
+//			for(int j = 0; j < C[0].length; j++) {
+//				for(int k = 0; k < C[0].length; k++) {
+//					sum += A[i][k] * B[k][j];
+//				}
+//				C[i][j] = sum;
+//				sum = 0;
+//			}
+//		}
+//		
+//		System.out.println("C행렬");
+//		for(int i = 0; i < C.length; i++) {
+//			for(int j = 0; j < C[i].length; j++) {
+//				System.out.print(C[i][j] + "\t");
+//			}
+//			System.out.println();
+//		}
+//		
 		
 
 		
@@ -82,12 +82,22 @@ public class Test38Matrix {
 			}
 		}
 		
+		
+		
 		// F = A의 전치 행렬 (행열이 뒤바뀜)
-//		for(int i = 0; i < F.length; i++) {
-//			for(int j=0; j< F[0].length; j++) {
-//
-//			}
-//		}
+		for(int i = 0; i < F.length; i++) {
+			for(int j=0; j< F[0].length; j++) {
+				F[i][j] = A[j][i];
+			}
+		}
+		
+		System.out.println("F행렬");
+		for(int i = 0; i < F.length; i++) {
+			for(int j = 0; j < F[i].length; j++) {
+				System.out.print(F[i][j] + "\t");
+			}
+			System.out.println();
+		}
 				
 
 	}
