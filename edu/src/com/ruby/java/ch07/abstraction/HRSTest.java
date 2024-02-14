@@ -46,7 +46,6 @@ abstract class Manager extends Employee1 {
 	}
 }
 
-
 class Director extends Manager {
 	// Manager를 상속받으므로 calcBonus를 구현(오버라이딩)해야함
 	public void calcBonus() {
