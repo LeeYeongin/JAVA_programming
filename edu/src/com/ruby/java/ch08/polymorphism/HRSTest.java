@@ -9,6 +9,7 @@ abstract class Employee{
 }
 
 class Salesman extends Employee{
+	int anuual_sales;
 
 	@Override
 	public double calcSalary() {
@@ -24,17 +25,11 @@ class Salesman extends Employee{
 //	public String toString() {
 //		return "세일즈맨";
 //	}
-
-//	public void calcSalary() {
-//		System.out.println("Salesman 급여 = 기본급 + 판매 수당");
-//	}
-//	
-//	public void calcBonus() {
-//		System.out.println("Salesman 보너스 = 기본급 * 12 * 4");
-//	}
 }
 
 class Consultant extends Employee{
+	int num_project;
+	
 	public double calcSalary() {
 		System.out.println("Consultant 급여 = 기본급 + 컨설팅 특별 수당");
 		return 400.0;
@@ -46,6 +41,7 @@ class Consultant extends Employee{
 }
 
 abstract class Manager extends Employee {
+	int num_team;
 	// calcBonus를 구현하지 않았기 때문에 추상클래스로 선언
 	public double calcSalary() {
 		System.out.println("Manager 급여 = 기본급 + 팀 성과 수당");
@@ -66,10 +62,19 @@ class Director extends Manager {
 }
 
 public class HRSTest {
-	public static void calcTax(Employee e) {
-		System.out.println("소득세를 계산합니다.");
-		double tax = e.calcSalary() * 0.1;
-		System.out.println("세금="+tax);
+	public static void calcTax(Object e) { // 1. 매개변수의 타입을 부모 타입으로 선언 -> Employee도 가능
+		/*
+		 * System.out.println("소득세를 계산합니다."); double tax = e.calcSalary() * 0.1;
+		 * System.out.println("세금="+tax);
+		 */
+		if(e instanceof Salesman) { // 2. Instanceof 연산자를 사용하여 타입을 검사
+			// 3. 타입 변경 후 차별적인 작업 진행
+			System.out.println("Salesman" + ((Salesman) e).anuual_sales); // Salesman으로 type을 변경하여 annual_sales 호출
+		} else if (e instanceof Manager) {
+			System.out.println("Manager");
+		} else if (e instanceof Employee) {
+			System.out.println("Employee" + ((Employee) e).salary);
+		}
 	}
 //	public static void calcTax(Salesman s) {
 //		// Employee의 하위클래스를 받는 메소드이므로 상위클래스인 Employee를 입력받아 사용불가
@@ -78,8 +83,12 @@ public class HRSTest {
 		Salesman s = new Salesman();
 		Employee e = new Salesman();
 		Director d = new Director();
-		HRSTest h = new HRSTest();
+		Object s3 = new Salesman();
+		Object arr[] = new Object[6];
+		arr[0] = s; arr[1] = e; arr[2] = e;
+		arr[3] = s3; arr[4] = s;
 		
+		HRSTest h = new HRSTest();
 		// static 함수라 아래 3가지 방법 모두 가능
 		// 동적바인딩
 		HRSTest.calcTax(s);
