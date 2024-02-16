@@ -15,12 +15,21 @@ class Student extends InterfaceStudents {
  String city; //주소 도시
 
  public Student() {
+	 sid = 0; 
+	 sname = null; 
+	 city = null;
 	 countStudents++;
  }
  
  public Student(int sid) {
+	 this();
 	 this.sid = sid;
-	 countStudents++;
+ }
+ 
+ public Student(int sid, String sname, String city) {
+	 this(sid);
+	 this.sname = sname;
+	 this.city = city;
  }
  
  public String toString() {
@@ -39,10 +48,21 @@ class Student extends InterfaceStudents {
 class WorkStudent extends Student {
 	String eno;
 	String company;
+	
+	public WorkStudent() {	}
+	
+	public WorkStudent(int sid, String name, String city, String eno, String company) {
+		super(sid, name, city); // -> this.sid = sid;
+								//	  this.sname = name;
+								//	  this.city = city;
+		this.eno = eno;
+		this.company = company;
+	}
 
 	 public String toString() {
 		 return super.toString()+", eno="+eno+", company=" + company;
 	 }
+	 
 	 public void showObject() {
 		 //Student 출력 코드 추가
 		 super.showObject();
@@ -50,11 +70,12 @@ class WorkStudent extends Student {
 	 }
 }
 class CodingWorkStudent extends WorkStudent {
-	String language;
+	String language = "Java";
 	
 	 public String toString() {
 		 return super.toString()+", language="+language;
 	 }
+	 
 	 public void showObject() {
 		 //WorkStudent 출력 코드 추가 
 		 super.showObject();
@@ -67,13 +88,14 @@ public class Test_객체배열 {
 		 is.showObject();
 	 }
 	 public static void main(String[] args) {
-	 Student arry[] = new Student[5];
+	 Student arry[] = new Student[6];
 	 Student.showNumberObjects();
-	 arry[0] = new Student();
-	 arry[1] = new Student(202301);
-	 arry[2] = new WorkStudent();
-	 arry[3] = new CodingWorkStudent();
-	 arry[4] = new WorkStudent();
+	 arry[0] = new Student(); // default 생성자
+	 arry[1] = new Student(202301); 
+	 arry[2] = new Student(202301, "Hong", "Busan");
+	 arry[3] = new WorkStudent(1234, "Hong", "busan", "e1", "naver");
+	 arry[4] = new CodingWorkStudent();
+	 arry[5] = new WorkStudent();
 	 Student.showNumberObjects();
 	 
 	 for (Student s : arry) {
