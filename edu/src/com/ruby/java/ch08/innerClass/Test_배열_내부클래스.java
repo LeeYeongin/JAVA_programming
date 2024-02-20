@@ -11,18 +11,73 @@ class Node3 {
 class LinkedList3 {
 	Node3 first;
 	
+	public LinkedList3() {
+		first = null;
+	}
+	
 	void append(int data) {
 		Node3 p = first, q = null;
+		Node3 newNode = new Node3(data);
+		
+		if(p == null) {
+			first = newNode;
+		} else {
+			while(p.link != null) {
+				p = p.link;
+			}
+			p.link = newNode;
+		}
+		
+		return;
 	}
 	
 	void showList() {
+		int count = 0;
+		
 		System.out.println();
 		Node3 p = first;
+		
+		while(p.link != null) {
+			count++;
+			p = p.link;
+		}
+		count++;
+		
+		p = first;
+		
+		for(int i=0; i < count; i++) {
+			System.out.print(" " + i + " ");
+		}
+		System.out.println();
+			
+		for (int i = 0; i < count; i++) {
+			if (p.data < 10)
+				System.out.print(" ");
+			System.out.print(p.data+ " ");
+			p = p.link;
+		}
+		
+		System.out.println();
 	}
 	
 	void insert(int data) {
 		Node3 newNode = new Node3(data);
 		Node3 p = first, q = null;
+		
+		while(p != null) {
+			if(p.data > data) {
+				newNode.link = p;
+				if(q == null) {
+					first = newNode;
+				} else {
+					q.link = newNode;
+				}
+				break;
+			}else {
+				q = p;
+				p = p.link;
+			}
+		}
 	}
 }
 
@@ -46,13 +101,30 @@ public class Test_배열_내부클래스 {
 				System.out.print(" ");
 			System.out.print(data[i]+ " ");
 		}
+		System.out.println();
 	}
 	
 	static int insertList(int[] data, int count, int x) {
 		
 		int indx = 0;
+
+		while(indx < count) {
+			if(data[indx] > x) {
+				while (indx <= count) {
+					int tmp = data[indx];
+					data[indx] = x;
+					x = tmp;
+					indx++;
+				}
+				break;
+			} else {
+				indx++;
+			}
+		}
 		
-		return indx;
+		count++;
+		
+		return count;
 	}
 	
 	public static void main(String[] args) {
@@ -62,6 +134,7 @@ public class Test_배열_내부클래스 {
 		// 배열
 		System.out.println("배열로 리스트::");
 		count = getList(list);
+		System.out.println(count);
 		showList(list);
 		count = insertList(list, count, 3);
 		showList(list);
