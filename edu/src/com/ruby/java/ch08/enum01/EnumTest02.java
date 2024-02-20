@@ -34,8 +34,7 @@ enum Mandarin {
 
 public class EnumTest02 {
 	static Scanner stdIn = new Scanner(System.in);
-	Mandarin m[] = Mandarin.values();//Mandarin의 생성자를 호출하고 각 값을 생성자 함수에 전달한다.
-	//values()는 static 함수로 열거된 모든 원소를 배열로 리턴
+	
 	static Mandarin selectMenu() {
 		int key;
 		do {
@@ -54,6 +53,14 @@ public class EnumTest02 {
 		Mandarin m;//생성자를 호출하지 않는다
 		//Mandarin m2 = new Mandarin(100);//생성자를 호출할 수 없다 - 주의점 
 		//*
+		
+//		Mandarin m4[] = Mandarin.values();//Mandarin의 생성자를 호출하고 각 값을 생성자 함수에 전달한다.
+		
+		//values()는 static 함수로 열거된 모든 원소를 배열로 리턴
+		Mandarin m5 = Mandarin.황금향;
+//		for(Mandarin mnd:m4) {
+			System.out.println("price = " + m5.getPrice());
+//		}
 		Mandarin ma = Mandarin.한라봉;//enum 클래스 생성자가 호출된다 
 		System.out.println("enum 객체 생성전");
 		System.out.println("황금향과 비교: "+ ma.compareTo(Mandarin.레드향));
