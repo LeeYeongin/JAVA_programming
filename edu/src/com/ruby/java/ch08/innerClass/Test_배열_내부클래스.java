@@ -22,10 +22,16 @@ class LinkedList3 {
 		if(p == null) {
 			first = newNode;
 		} else {
-			while(p.link != null) {
+//			while(p.link != null) {
+//				p = p.link;
+//			}
+//			p.link = newNode;
+			while(p != null) {
+				q = p;
 				p = p.link;
 			}
-			p.link = newNode;
+			q.link = newNode;
+			System.out.println(p);
 		}
 		
 		return;
@@ -144,9 +150,10 @@ public class Test_배열_내부클래스 {
 		
 		// linked list
 		LinkedList3 ll = new LinkedList3();
-		ll.append(5);ll.append(10);ll.append(15);ll.append(20);ll.append(25);
-		ll.showList();
-		ll.insert(3);ll.showList();
-		ll.insert(7);ll.showList();
+		ll.append(5);ll.append(10);
+//		ll.append(5);ll.append(10);ll.append(15);ll.append(20);ll.append(25);
+//		ll.showList();
+//		ll.insert(3);ll.showList();
+//		ll.insert(7);ll.showList();
 	}
 }
