@@ -8,24 +8,31 @@ public class Test01_1 {
 		Object arr[] = new Object[10];
 		String s = "java";
 		Integer i1 = 123;
+		// Object은 제일 상위 클래스이므로 다양한 타입의 객체 사용가능
 		arr[0] = s;
 		arr[1] = i1;
-		//int len = arr[0].length();//Object에 length()가 없다
-		int len = ((String) arr[0]).length();
-
+		
+//		int len = arr[0].length();//Object에 length()가 없다(arr변수(수신객체)의 타입이 Object이므로 String의 메소드 사용불가)
+		// String의 메소드 사용을 위해 형변환 후 메소드 사용
+		int len = ((String) arr[0]).length(); // explicit type casting
+		
+		
+		// type에 대한 명시가 없으면 Object type으로 간주 -> 모든 타입의 객체 저장 가능 
+		// 기본(명시되어있지 않으면) 10개 할당
 		ArrayList lst = new ArrayList();//모든 타입의 객체들을 저장할 수 있다 그러나 비추다! - 이유는?
 		String s2 = "java";
-		Integer i2 = 123;
-		lst.add(s2);
-		lst.add(i2);
+		Integer i2 = 123; // wrapper 클래스에 의해 boxing
+		lst.add(s2); // String 객체
+		lst.add(i2); // 정수 객체
 		//lst. //. 다음에 나타나는 메소드를 확인
 		//int len = (lst.get(0)).length();//Object에 length()가 없다
 		int len2 = ((String)lst.get(0)).length();
 
 		System.out.println("len2 = " + len2);
 
+		// generic type을 string으로 지정
 		ArrayList<String> list = new ArrayList<>();//String 객체로 제한 > 바람직한 형태이다 
-
+		
 		list.add("서울");		list.add("북경");		list.add("상해");
 		list.add("서울");		list.add("도쿄");		list.add("뉴욕");
 		int len_string = list.get(0).length(); //list는 string 객체이다 그 차이는(원인은?)
@@ -39,6 +46,7 @@ public class Test01_1 {
 		System.out.println("1 : " + list.toString()); //이 메소드는 ArrayList의 함수
 		//list.toString();//to.선택하여 나타나는 함수 리스트 확인
 		System.out.println("list.size() = " + list.size());
+//		list.size();
 
 		list.add(1, "LA");//인덱스 1 위치에 LA 추가
 		print(2, list);
@@ -89,6 +97,7 @@ public class Test01_1 {
 		print(12, list2);
 
 		// boolean addAll(Collection<? extends E> c) - ?는 wild card 사용 *** 중요
+		// Collection<? extends E> -> 타입, c -> 변수, wild card는 주어진 E(ex: String) class의 본인/하위(상속) class 모두 가능
 		list.addAll(list2);
 		print(13, list);
 
