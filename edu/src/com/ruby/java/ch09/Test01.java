@@ -2,6 +2,8 @@ package com.ruby.java.ch09;
 
 class MyObject2 {
 	public MyObject2() {}
+	
+	public MyObject2(int num) {}
 	@Override // 코드 주석 달기 - 자바 컴파일러
 	public String toString() {
 		return "MyObject2";
@@ -21,16 +23,17 @@ public class Test01 {
 
 		Class c = obj1.getClass();
 		System.out.println(c.getName());
-		
+//		obj1.toString(); -> 1. 클래스명
+//							2. @ + 식별자코드(hashcode)
 		// println 매개변수 String 타입 -> object를 string으로 변환해서 사용
 		System.out.println(obj1);//toString() 결과와 같은 이유는 자동적인 타입 캐스팅 때문임 > 정수를 hexa로 변경한 것
 		System.out.println(obj1.toString());//399 페이지 하단의 클래스 이름이 string
 		System.out.println(obj2);
 		System.out.println(obj3);
 
-		MyObject obj4 = new MyObject(123);
-		System.out.println(obj4);
-		MyObject obj5 = new MyObject(123);
+		MyObject2 obj4 = new MyObject2(123);
+		System.out.println("MyObject출력: " + obj4); // override된 toString호출
+		MyObject2 obj5 = new MyObject2(123);
 		//obj4.equals(obj5) //MyObject의 equals()가 실행됨
 		if (obj4.equals(obj5)) {//hashcode가 다르면 다른 객체로 본다 -기준은 hashcode를 갖고 판단한다
 			System.out.println("동일 객체이다.");//MyObject 클래스에서 equals()를 재정의한 경우
