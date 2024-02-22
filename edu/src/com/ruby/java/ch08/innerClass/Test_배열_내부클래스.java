@@ -31,7 +31,6 @@ class LinkedList3 {
 				p = p.link;
 			}
 			q.link = newNode;
-			System.out.println(p);
 		}
 		
 		return;
@@ -140,7 +139,6 @@ public class Test_배열_내부클래스 {
 		// 배열
 		System.out.println("배열로 리스트::");
 		count = getList(list);
-		System.out.println(count);
 		showList(list);
 		count = insertList(list, count, 3);
 		showList(list);
@@ -150,10 +148,9 @@ public class Test_배열_내부클래스 {
 		
 		// linked list
 		LinkedList3 ll = new LinkedList3();
-		ll.append(5);ll.append(10);
-//		ll.append(5);ll.append(10);ll.append(15);ll.append(20);ll.append(25);
-//		ll.showList();
-//		ll.insert(3);ll.showList();
-//		ll.insert(7);ll.showList();
+		ll.append(5);ll.append(10);ll.append(15);ll.append(20);ll.append(25);
+		ll.showList();
+		ll.insert(3);ll.showList();
+		ll.insert(7);ll.showList();
 	}
 }
