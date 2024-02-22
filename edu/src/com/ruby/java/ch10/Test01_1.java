@@ -7,7 +7,7 @@ public class Test01_1 {
 	public static void main(String[] args) {
 		Object arr[] = new Object[10];
 		String s = "java";
-		Integer i1 = 123;
+		Integer i1 = 1234;
 		// Object은 제일 상위 클래스이므로 다양한 타입의 객체 사용가능
 		arr[0] = s;
 		arr[1] = i1;
