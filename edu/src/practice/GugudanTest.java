@@ -5,5 +5,6 @@ public class GugudanTest {
 		Gugudan ggd = new Gugudan();
 		
 		ggd.printHorizontal();
+		ggd.printColumn(3);
 	}
 }
