@@ -40,7 +40,7 @@ public class BagTest {
 		bag2.showType();
 		bag3.showType();
 		
-//		bag = bag2; 오류 발생
+//		bag = bag2; // 오류 발생
 		
 //		Bag<Book> bag = new Bag<>();
 //		bag.setThing(new Book());
