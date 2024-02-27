@@ -60,7 +60,7 @@ public class Test_ch10_lotto {
 			lotto = new HashSet<>();
 			//구현할 부분
 			for (int j=0; lotto.size()<6; j++) {
-				lotto.add(number.nextInt(46) + 1);
+				lotto.add(number.nextInt(45) + 1);
 			}
 			
 			lotSet.add(lotto); // 복권 명부에 발행 복권을 추가
@@ -84,12 +84,13 @@ public class Test_ch10_lotto {
 		//당첨번호 추첨
 		HashSet<Integer> win = new HashSet<>();
 //		for (int j = 0; win.size() < 7; j++) {//6개 번호와 보너스 번호
+		
 		for (int j = 0; win.size() < 6; j++) {//6개 번호와 보너스 번호
-			win.add(number.nextInt(46)+1);
+			win.add(number.nextInt(45)+1);
 		}
 		
 		// 보너스 번호
-		int bonus = number.nextInt(46) + 1;
+		int bonus = number.nextInt(45) + 1;
 		System.out.print("당첨번호: " + win + " 보너스 번호: " + bonus);//6개의 당첨번호와 보너스번호 출력
 		// 6개를 맞힌 복권을 찾는다 
 		System.out.println();
