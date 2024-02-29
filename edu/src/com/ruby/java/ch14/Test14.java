@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 public class Test14 {
 	public static void main(String[] args) {
+		// Function<T,R>: T타입 인자 처리 후 R타입 값 반환
 		Function<String, Integer> func = (s) -> {
 			int cnt = 0;
 			String[] word = s.split(" ");
