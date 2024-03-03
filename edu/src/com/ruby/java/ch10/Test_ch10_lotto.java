@@ -14,26 +14,14 @@ package com.ruby.java.ch10;
 //hashset(중복이 없음)을 arraylist로 변환하여 정렬하기 구현 -> collection
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-//class ListComparator implements Comparator<List<Integer>>{
-//	@Override
-//	public int compare(List<Integer> l1, List<Integer> l2) {
-//		Iterator<Integer> ait = l1.iterator();
-//		Iterator<Integer> bit = l2.iterator();
-//		while (ait.hasNext()) {
-//			int anum = ait.next();int bnum = bit.next();
-//			if ( anum > bnum) return 1;
-//			else if (anum < bnum) return -1;
-//			
-//		}
-//		return 0;
-//	}
-//}
+
 public class Test_ch10_lotto {
 
 	public static void main(String[] args) {
@@ -44,10 +32,8 @@ public class Test_ch10_lotto {
 
 	public static void lotto_generator(int n) {
 		Random number = new Random();
-//		HashSet<HashSet<Integer>> lot = new HashSet<>();
 		List<HashSet<Integer>> lotSet = new ArrayList<>(); // 복권 여러장
 		HashSet<Integer> lotto = null; // 복권 한장
-//		List<List<Integer>> al = new ArrayList<>();
 		/*
 		 * 랜덤한 숫자 6개 + 보너스 번호(중복 X)
 		 * [[35, 40, 27, 29, 14, 31, 15], [0, 1, 18, 38, 6, 24, 29],
@@ -67,23 +53,23 @@ public class Test_ch10_lotto {
 		}
 		
 		System.out.println("\nlot hashset을 출력\n");
+		
 		for (HashSet<Integer> eachLotto : lotSet) {
 			/*
 			 * 아래 모양으로 출력
 			 * [33  1 17 22  6  8]
 			 *  [0  1 18 38  6 24]
 			 */
-			//구현할 부분
+			// 구현
+			List<Integer> lot = new ArrayList<Integer>(eachLotto);
+			Collections.sort(lot); // HashSet을 List로 바꿔 정렬
+			System.out.println(lot);
+			
+//			System.out.println(eachLotto); // 정렬하지 않고 그냥 출력할 경우 그냥 이 코드 사용
 		}
-//		System.out.println("복권 정렬전::lot = " + al);
-		
-//		al.sort(new ListComparator());
-//		System.out.println("복권 정렬후::lot = " + al);
-		//hashset의 리스트를 정렬하는 알고리즘 개발
-		//hashset를 arrayList로 변환
+
 		//당첨번호 추첨
 		HashSet<Integer> win = new HashSet<>();
-//		for (int j = 0; win.size() < 7; j++) {//6개 번호와 보너스 번호
 		
 		for (int j = 0; win.size() < 6; j++) {//6개 번호와 보너스 번호
 			win.add(number.nextInt(45)+1);
@@ -92,15 +78,16 @@ public class Test_ch10_lotto {
 		// 보너스 번호
 		int bonus = number.nextInt(45) + 1;
 		System.out.print("당첨번호: " + win + " 보너스 번호: " + bonus);//6개의 당첨번호와 보너스번호 출력
+		
 		// 6개를 맞힌 복권을 찾는다 
 		System.out.println();
 		winnerLotto(win, bonus, lotSet);//1등을 찾는다
 	}
 	
 	static void winnerLotto(HashSet<Integer> w, int bonus, List<HashSet<Integer>> lotSet) {
-		// 당첨번호 w에 대하여 발행된 복권 리스트 al의 모든 원소 elem에 대하여 조사한다
+		// 당첨번호 w에 대하여 발행된 복권 리스트 lotSet의 모든 원소 elem에 대하여 조사한다
 		for (int i = 0; i < lotSet.size(); i++) {
-		//구현할 부분
+			//구현할 부분
 			// lotto hashset을 하나식 꺼내 checkWinner
 			checkWinner(w, bonus, lotSet.get(i));
 		}
@@ -109,40 +96,54 @@ public class Test_ch10_lotto {
 	static void checkWinner(HashSet<Integer> w, int bonus, HashSet<Integer> elem) {
 		// 당첨번호 w의 각 숫자를 꺼내 복권 엔트리에 포함되어 있는지를 조사
 		List<Integer> L = new ArrayList<>(w);
+		Collections.sort(L);
 		int count = 0; // 몇개를 맞췄는가
-		for (int i = 0; i < L.size()-1; i++)
+		for (int i = 0; i < L.size(); i++)
 		{
 			/*
 			 * 당첨번호 각 번호를 몇개 포함하는지를 elem에 대하여 조사
 			 */
 			//구현할 부분
+			if(elem.contains(L.get(i)))
+				count++;
 		}
+
+		/*
+		 * 코드2: removeAll함수를 사용하여 당첨번호 포함 갯수를 계산하는 코드 
+		 * 	List<Integer> el = new ArrayList<Integer>(elem);
+		 *  el.removeAll(L); 
+		 *  count = 6 - el.size();
+		 */
+		
 		switch (count) {
-		case 0:
-		case 1:
-		case 2:
-			System.out.println("꽝");
-			break;
-		case 3:
-			System.out.println("5등 복권 " + elem + " 당첨번호:" + w);
-			break;
-		case 4:
-			System.out.println("4등 복권 " + elem + " 당첨번호:" + w);
-			break;
-		case 5:
-			// 수정 필요 (2,3 등)
-//			if (L.get(6).equals(elem.get(6))) { //보너스 번호가 일치하는 지를 조사 
-//				System.out.println("2등 복권 " + elem + " 당첨번호:" + w);
-//				break;
-//			}
-//			else {
-//				System.out.println("3등 복권 " + elem + " 당첨번호:" + w);
-//				break;
-//			}
-//			
-		case 6:
-			System.out.println("1등 복권 " + elem + " 당첨번호:" + w);
-			break;
+			case 0:
+			case 1:
+			case 2:
+				System.out.println("꽝");
+				break;
+			case 3:
+				System.out.println("5등 복권 " + elem + " 당첨번호:" + w);
+				break;
+			case 4:
+				System.out.println("4등 복권 " + elem + " 당첨번호:" + w);
+				break;
+			case 5:
+				// 수정 필요 (2,3 등)				
+				if (elem.contains(bonus)) { //보너스 번호가 일치하는 지를 조사 
+					System.out.println("2등 복권 " + elem + " 당첨번호:" + w); 
+					break; 
+				}
+				else { 
+					System.out.println("3등 복권 " + elem + " 당첨번호:"+ w); 
+					break; 
+				}
+				/*
+				 * 코드2 버전 
+				 * 위 132~139줄의 elem.contains(bonus)를 el.contains(bonus)로 수정
+				 */
+			case 6:
+				System.out.println("1등 복권 " + elem + " 당첨번호:" + w);
+				break;
 		}
 
 
