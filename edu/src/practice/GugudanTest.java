@@ -6,6 +6,6 @@ public class GugudanTest {
 		
 //		ggd.printVertical();
 //		ggd.printHorizontal();
-		ggd.printColumn(4);
+		ggd.printColumn(7);
 	}
 }

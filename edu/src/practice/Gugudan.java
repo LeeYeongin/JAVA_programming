@@ -28,27 +28,49 @@ public class Gugudan {
 	
 	// 원하는 col수 만큼 가로로 출력하는 메소드
 	public void printColumn(int col) {
-		int n = 8/col;
-		int start = 2;
-		int tmp = start + col;
+		// 교수님 제공 코드
+		if (9<col) {
+			System.out.println("col is not valid![1-9]");
+		}
 		
-		if(8 % col != 0)
-			n += 1;
-		
-		for(int k=0; k<n; k++) {
-			for(int i=1; i<10; i++) {
-				for(int j=start; j<tmp; j++) {
-					System.out.print(j + "*" + i + "=" + (i*j) + "\t");
+		for(int i=2; i<10; i+=col) {
+			for(int j=1; j<10; j++) {
+				for(int k=0; k<col; k++) {
+					if(10<=i+k) {
+						System.out.print("\n");
+						break;
+					}
+					System.out.printf("%d * %d = %d", (i+k), j, (i+k)*j);
+					
+					if (k < col-1) System.out.print("\t");
+					else			System.out.print("\n");
 				}
-				System.out.println();
 			}
-			start = tmp;
-			tmp += col;
-			
-			if(tmp > 10)
-				tmp = 10;
 			System.out.println();
 		}
+		
+		
+//		int n = 8/col;
+//		int start = 2;
+//		int tmp = start + col;
+//		
+//		if(8 % col != 0)
+//			n += 1;
+//		
+//		for(int k=0; k<n; k++) {
+//			for(int i=1; i<10; i++) {
+//				for(int j=start; j<tmp; j++) {
+//					System.out.print(j + "*" + i + "=" + (i*j) + "\t");
+//				}
+//				System.out.println();
+//			}
+//			start = tmp;
+//			tmp += col;
+//			
+//			if(tmp > 10)
+//				tmp = 10;
+//			System.out.println();
+//		}
 		
 	}
 }
