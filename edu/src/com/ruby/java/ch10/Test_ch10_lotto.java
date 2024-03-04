@@ -14,11 +14,8 @@ package com.ruby.java.ch10;
 //hashset(중복이 없음)을 arraylist로 변환하여 정렬하기 구현 -> collection
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
